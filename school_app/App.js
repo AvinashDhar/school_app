@@ -1,11 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet} from 'react-native';
+import { createStore, combineReducers } from 'redux';
+import {Provider} from 'react-redux';
+
+import StudentReducer from './store/reducers/students';
+import StudentNavigator from './navigation/StudentNavigator';
+
+const rootReducer = combineReducers({
+  students : StudentReducer
+});
+
+const store = createStore(rootReducer);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
+    <Provider store = {store}>
+      <StudentNavigator />
+    </Provider>
   );
 }
 
