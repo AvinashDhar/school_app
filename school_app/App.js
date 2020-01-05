@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
 import { StyleSheet} from 'react-native';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import {Provider} from 'react-redux';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
+import ReduxThunk from 'redux-thunk';
 
 import StudentReducer from './store/reducers/students';
+import AuthReducer from './store/reducers/auth';
 import StudentNavigator from './navigation/StudentNavigator';
 
 const rootReducer = combineReducers({
-  students : StudentReducer
+  students : StudentReducer,
+  auth : AuthReducer
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const fetchFonts = () => {
   return Font.loadAsync({
