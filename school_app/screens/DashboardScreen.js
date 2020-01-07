@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import StudentItem from '../components/StudentItem';
 
 
-const TeacherDashboardScreen = props => {
+const DashboardScreen = props => {
 
 return(<ScrollView>
 <View style = {styles.row}>
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 })
-TeacherDashboardScreen.navigationOptions = {
-    headerTitle: 'Teacher Dashboard'
+DashboardScreen.navigationOptions = {
+    headerTitle: 'Dashboard'
 };
-export default TeacherDashboardScreen;
+export default DashboardScreen;
 

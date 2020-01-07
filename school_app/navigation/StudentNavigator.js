@@ -1,11 +1,17 @@
+import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import {createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
 import StudentOverviewScreen from '../screens/StudentOverviewScreen';
 import StudentDetailScreen from '../screens/StudentDetailScreen';
-import TeacherDashboardScreen from '../screens/TeacherDashboardScreen';
+import DashboardScreen from '../screens/DashboardScreen';
+import StartupScreen from '../screens/StartupScreen';
 import AuthScreen from '../screens/AuthScreen';
 import Colors from '../constants/Colors';
 import { Platform } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+
 
 const defaultNavOptions = {
     headerStyle: {
@@ -42,9 +48,32 @@ const AuthNavigator = createStackNavigator(
     }
   );
 
+const DashboardNavigator  = createStackNavigator(
+  {
+    Dashboard: DashboardScreen
+  },
+  {
+    defaultNavigationOptions: defaultNavOptions
+  }
+);
+
+  const SchoolNavigator = createDrawerNavigator(
+    {
+      Students: StudentNavigator,
+      Dashboard: DashboardNavigator,
+      
+    },
+    {
+      contentOptions: {
+        activeTintColor: Colors.primary
+      }
+    }
+  );
+
 const MainNavigator = createSwitchNavigator({
+    startup: StartupScreen,
     Auth: AuthNavigator,
-    Student: StudentNavigator
+    School: SchoolNavigator
   });
 
 export default createAppContainer(MainNavigator);
